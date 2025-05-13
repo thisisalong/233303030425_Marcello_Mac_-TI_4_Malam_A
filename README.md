@@ -91,6 +91,31 @@ router.register(r'waste_types', views.WasteTypeViewSet)
 router.register(r'transactions', views.TransactionViewSet)
 router.register(r'recyclers', views.RecyclerViewSet)
 
+
+from rest_framework import viewsets
+from .models import User, Profile, WasteType, Transaction, Recycler
+from .serializers import UserSerializer, ProfileSerializer, WasteTypeSerializer, TransactionSerializer, RecyclerSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+class WasteTypeViewSet(viewsets.ModelViewSet):
+    queryset = WasteType.objects.all()
+    serializer_class = WasteTypeSerializer
+
+class TransactionViewSet(viewsets.ModelViewSet):
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializer
+
+class RecyclerViewSet(viewsets.ModelViewSet):
+    queryset = Recycler.objects.all()
+    serializer_class = RecyclerSerializer
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
